@@ -29,6 +29,10 @@
       text-decoration: none;
     }
 
+    button {
+      font-family: inherit;
+    }
+
     .hero {
       min-height: 100vh;
       position: relative;
@@ -36,12 +40,28 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+
       background:
         linear-gradient(
-          rgba(4, 18, 34, 0.60),
-          rgba(4, 18, 34, 0.74)
+          rgba(4, 18, 34, 0.56),
+          rgba(4, 18, 34, 0.78)
         ),
         url('images/hero.jpg') center center / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(4, 18, 34, 0.28),
+          rgba(4, 18, 34, 0.05) 40%,
+          rgba(4, 18, 34, 0.38) 75%,
+          rgba(4, 18, 34, 0.8)
+        );
+      pointer-events: none;
     }
 
     .navbar {
@@ -51,7 +71,7 @@
       align-items: center;
       padding: 28px 5%;
       position: relative;
-      z-index: 10;
+      z-index: 20;
     }
 
     .logo {
@@ -71,8 +91,9 @@
 
     .nav-center {
       display: flex;
-      gap: 32px;
+      gap: 30px;
       justify-content: center;
+      align-items: center;
       font-size: 14px;
       font-weight: 500;
     }
@@ -91,12 +112,76 @@
       justify-self: end;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .language {
+    .language-selector {
+      position: relative;
+    }
+
+    .language-button {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: white;
+      padding: 10px 13px;
+      border-radius: 8px;
       font-size: 13px;
-      opacity: 0.9;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .language-button:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .language-arrow {
+      color: #8cccf0;
+      font-size: 12px;
+    }
+
+    .language-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      min-width: 140px;
+      padding: 6px;
+
+      background: #071a2b;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 10px;
+
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+
+      transition: 0.2s ease;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.28);
+    }
+
+    .language-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .language-menu button {
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: white;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .language-menu button:hover {
+      background: rgba(140,204,240,0.14);
+      color: #8cccf0;
     }
 
     .book-button {
@@ -121,7 +206,7 @@
       text-align: center;
       padding: 80px 0 130px;
       position: relative;
-      z-index: 3;
+      z-index: 10;
     }
 
     .eyebrow {
@@ -130,6 +215,7 @@
       justify-content: center;
       gap: 18px;
       margin-bottom: 34px;
+
       color: #8cccf0;
       font-size: 13px;
       font-weight: 600;
@@ -167,7 +253,7 @@
       margin: 42px auto 0;
       font-size: 20px;
       line-height: 1.65;
-      color: rgba(255,255,255,0.88);
+      color: rgba(255,255,255,0.9);
     }
 
     .hero-buttons {
@@ -215,15 +301,15 @@
 
     .scroll-indicator {
       position: absolute;
-      bottom: 86px;
+      bottom: 84px;
       left: 50%;
-      transform: translateX(-50%);
       width: 22px;
       height: 22px;
       border-right: 2px solid white;
       border-bottom: 2px solid white;
       transform: translateX(-50%) rotate(45deg);
       opacity: 0.9;
+      z-index: 10;
     }
 
     .placeholder-section {
@@ -256,15 +342,19 @@
       left: 0;
       width: 100%;
       z-index: 100;
+
       background: rgba(6, 17, 30, 0.96);
       backdrop-filter: blur(12px);
+
       border-top: 1px solid rgba(255,255,255,0.12);
+
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
+
       padding: 18px 5%;
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.86);
       font-size: 14px;
     }
 
@@ -272,10 +362,12 @@
       border: 1px solid #65b8e7;
       background: transparent;
       color: #8cccf0;
+
       border-radius: 999px;
       padding: 10px 22px;
+
       cursor: pointer;
-      font: inherit;
+      font-size: 14px;
     }
 
     .cookie-bar button:hover {
@@ -332,125 +424,381 @@
   <section class="hero" id="home">
 
     <nav class="navbar">
+
       <div class="logo">
         Naples
         <span>Race Terrace</span>
       </div>
 
       <div class="nav-center">
-        <a href="#experience">L'esperienza</a>
-        <a href="#tickets">Biglietti</a>
-        <a href="#guide">Guida</a>
-        <a href="#faq">FAQ</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contatti</a>
+        <a href="#experience" data-it="L'esperienza" data-en="Experience">
+          L'esperienza
+        </a>
+
+        <a href="#tickets" data-it="Biglietti" data-en="Tickets">
+          Biglietti
+        </a>
+
+        <a href="#guide" data-it="Guida" data-en="Guide">
+          Guida
+        </a>
+
+        <a href="#faq" data-it="FAQ" data-en="FAQ">
+          FAQ
+        </a>
+
+        <a href="#team" data-it="Team" data-en="Team">
+          Team
+        </a>
+
+        <a href="#contact" data-it="Contatti" data-en="Contacts">
+          Contatti
+        </a>
       </div>
 
       <div class="nav-right">
-        <div class="language">IT⌄</div>
-        <a class="book-button" href="#tickets">Prenota ora</a>
+
+        <div class="language-selector">
+
+          <button class="language-button" onclick="toggleLanguageMenu()">
+            <span id="currentLanguage">IT</span>
+            <span class="language-arrow">⌄</span>
+          </button>
+
+          <div class="language-menu" id="languageMenu">
+            <button onclick="setLanguage('it')">
+              Italiano
+            </button>
+
+            <button onclick="setLanguage('en')">
+              English
+            </button>
+          </div>
+
+        </div>
+
+        <a
+          class="book-button"
+          href="#tickets"
+          data-it="Prenota ora"
+          data-en="Book now"
+        >
+          Prenota ora
+        </a>
+
       </div>
+
     </nav>
+
 
     <div class="hero-content">
 
-      <div class="eyebrow">
+      <div
+        class="eyebrow"
+        data-it="America's Cup · Napoli · 2027"
+        data-en="America's Cup · Naples · 2027"
+      >
         America's Cup · Napoli · 2027
       </div>
 
+
       <h1>
-        La regata,
-        <span class="accent">vista dall'alto.</span>
+        <span
+          data-it="La regata,"
+          data-en="The race,"
+        >
+          La regata,
+        </span>
+
+        <span
+          class="accent"
+          data-it="vista dall'alto."
+          data-en="from above."
+        >
+          vista dall'alto.
+        </span>
       </h1>
 
-      <p class="hero-text">
+
+      <p
+        class="hero-text"
+        data-it="Una terrazza privata sul Golfo di Napoli. Vista privilegiata sulla regata, cucina italiana preparata al momento, drinks e posti limitati."
+        data-en="A private terrace overlooking the Gulf of Naples. A privileged view of the race, freshly prepared Italian cuisine, drinks and limited seating."
+      >
         Una terrazza privata sul Golfo di Napoli.
         Vista privilegiata sulla regata, cucina italiana preparata al momento,
         drinks e posti limitati.
       </p>
 
+
       <div class="hero-buttons">
-        <a href="#tickets" class="btn btn-primary">
+
+        <a
+          href="#tickets"
+          class="btn btn-primary"
+          data-it="Riserva il tuo posto →"
+          data-en="Reserve your seat →"
+        >
           Riserva il tuo posto →
         </a>
 
-        <a href="#experience" class="btn btn-secondary">
+        <a
+          href="#experience"
+          class="btn btn-secondary"
+          data-it="Scopri l'esperienza"
+          data-en="Discover the experience"
+        >
           Scopri l'esperienza
         </a>
+
       </div>
 
     </div>
+
 
     <a href="#experience" class="scroll-indicator"></a>
 
   </section>
 
 
+
   <section class="placeholder-section" id="experience">
-    <h2>L'esperienza</h2>
-    <p>
+
+    <h2
+      data-it="L'esperienza"
+      data-en="The experience"
+    >
+      L'esperienza
+    </h2>
+
+    <p
+      data-it="Qui inseriremo la sezione dedicata all'esperienza sulla terrazza, alla vista sulla regata, al food, ai drink e all'atmosfera."
+      data-en="Here we will introduce the terrace experience, the race view, food, drinks and atmosphere."
+    >
       Qui inseriremo la sezione dedicata all'esperienza sulla terrazza,
       alla vista sulla regata, al food, ai drink e all'atmosfera.
     </p>
+
   </section>
+
 
 
   <section class="placeholder-section" id="tickets">
-    <h2>Biglietti</h2>
-    <p>
+
+    <h2
+      data-it="Biglietti"
+      data-en="Tickets"
+    >
+      Biglietti
+    </h2>
+
+    <p
+      data-it="Qui inseriremo giorni disponibili, tipologie di ingresso, prezzi e sistema di prenotazione."
+      data-en="Here we will add available dates, ticket options, prices and booking information."
+    >
       Qui inseriremo giorni disponibili, tipologie di ingresso,
       prezzi e sistema di prenotazione.
     </p>
+
   </section>
+
 
 
   <section class="placeholder-section" id="guide">
-    <h2>Guida</h2>
-    <p>
+
+    <h2
+      data-it="Guida"
+      data-en="Guide"
+    >
+      Guida
+    </h2>
+
+    <p
+      data-it="Orari, come arrivare, informazioni utili, posizione, dress code e tutto ciò che serve agli ospiti."
+      data-en="Opening times, directions, useful information, location, dress code and everything guests need to know."
+    >
       Orari, come arrivare, informazioni utili, posizione,
       dress code e tutto ciò che serve agli ospiti.
     </p>
+
   </section>
+
 
 
   <section class="placeholder-section" id="faq">
-    <h2>FAQ</h2>
-    <p>
+
+    <h2
+      data-it="FAQ"
+      data-en="FAQ"
+    >
+      FAQ
+    </h2>
+
+    <p
+      data-it="Qui costruiremo le domande frequenti."
+      data-en="Here we will add the most frequently asked questions."
+    >
       Qui costruiremo le domande frequenti.
     </p>
+
   </section>
+
 
 
   <section class="placeholder-section" id="team">
-    <h2>Team</h2>
-    <p>
+
+    <h2
+      data-it="Team"
+      data-en="Team"
+    >
+      Team
+    </h2>
+
+    <p
+      data-it="Qui presenteremo host, chef e persone coinvolte nell'esperienza."
+      data-en="Here we will introduce the host, chef and the people behind the experience."
+    >
       Qui presenteremo host, chef e persone coinvolte nell'esperienza.
     </p>
+
   </section>
+
 
 
   <section class="placeholder-section" id="contact">
-    <h2>Contatti</h2>
-    <p>
+
+    <h2
+      data-it="Contatti"
+      data-en="Contacts"
+    >
+      Contatti
+    </h2>
+
+    <p
+      data-it="Email, Instagram, WhatsApp e modulo di contatto."
+      data-en="Email, Instagram, WhatsApp and contact form."
+    >
       Email, Instagram, WhatsApp e modulo di contatto.
     </p>
+
   </section>
 
 
+
   <div class="cookie-bar" id="cookieBar">
-    <span>
+
+    <span
+      data-it="Questo sito usa solo cookie tecnici necessari al funzionamento. Niente tracciamento, niente profilazione."
+      data-en="This website only uses technical cookies required for its operation. No tracking, no profiling."
+    >
       Questo sito usa solo cookie tecnici necessari al funzionamento.
       Niente tracciamento, niente profilazione.
     </span>
 
-    <button onclick="closeCookie()">Ho capito</button>
+    <button
+      onclick="closeCookie()"
+      data-it="Ho capito"
+      data-en="Got it"
+    >
+      Ho capito
+    </button>
+
   </div>
 
 
+
   <script>
+
+    let currentLanguage = 'it';
+
+
+    function toggleLanguageMenu() {
+      document
+        .getElementById('languageMenu')
+        .classList
+        .toggle('active');
+    }
+
+
+    function setLanguage(lang) {
+
+      currentLanguage = lang;
+
+      document.documentElement.lang = lang;
+
+      document.getElementById('currentLanguage').textContent =
+        lang.toUpperCase();
+
+
+      const translatableElements =
+        document.querySelectorAll('[data-it][data-en]');
+
+
+      translatableElements.forEach(element => {
+
+        if (lang === 'it') {
+          element.textContent = element.dataset.it;
+        }
+
+        if (lang === 'en') {
+          element.textContent = element.dataset.en;
+        }
+
+      });
+
+
+      document
+        .getElementById('languageMenu')
+        .classList
+        .remove('active');
+
+
+      localStorage.setItem('language', lang);
+
+    }
+
+
     function closeCookie() {
       document.getElementById('cookieBar').style.display = 'none';
+      localStorage.setItem('cookieAccepted', 'true');
     }
+
+
+    document.addEventListener('click', function(event) {
+
+      const selector =
+        document.querySelector('.language-selector');
+
+      if (!selector.contains(event.target)) {
+
+        document
+          .getElementById('languageMenu')
+          .classList
+          .remove('active');
+      }
+
+    });
+
+
+    window.addEventListener('DOMContentLoaded', function() {
+
+      const savedLanguage =
+        localStorage.getItem('language');
+
+      if (savedLanguage) {
+        setLanguage(savedLanguage);
+      }
+
+
+      const cookieAccepted =
+        localStorage.getItem('cookieAccepted');
+
+      if (cookieAccepted === 'true') {
+        document.getElementById('cookieBar').style.display = 'none';
+      }
+
+    });
+
   </script>
 
 </body>
