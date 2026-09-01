@@ -8,14 +8,32 @@ async function loadSection(containerId, filePath) {
 
     const html = await response.text();
 
-    document.getElementById(containerId).innerHTML = html;
+    const container = document.getElementById(containerId);
+
+    if (!container) {
+      return;
+    }
+
+    container.innerHTML = html;
 
   } catch (error) {
     console.error(error);
-
-    document.getElementById(containerId).innerHTML =
-      "<p>Errore nel caricamento della sezione.</p>";
   }
+}
+
+
+async function loadCourseScript() {
+  if (document.getElementById("course-script")) {
+    return;
+  }
+
+  const script = document.createElement("script");
+
+  script.id = "course-script";
+  script.type = "module";
+  script.src = "percorso/circuit.js";
+
+  document.body.appendChild(script);
 }
 
 
@@ -24,6 +42,11 @@ async function loadWebsiteSections() {
   await loadSection(
     "experience",
     "esperienza/index.html"
+  );
+
+  await loadSection(
+    "course",
+    "percorso/index.html"
   );
 
   await loadSection(
@@ -51,14 +74,18 @@ async function loadWebsiteSections() {
     "contatti/index.html"
   );
 
+  await loadCourseScript();
 }
 
 
 function toggleLanguageMenu() {
-  document
-    .getElementById("languageMenu")
-    .classList
-    .toggle("active");
+  const menu = document.getElementById("languageMenu");
+
+  if (!menu) {
+    return;
+  }
+
+  menu.classList.toggle("active");
 }
 
 
@@ -66,84 +93,131 @@ function setLanguage(lang) {
 
   document.documentElement.lang = lang;
 
-  document.getElementById("currentLanguage").textContent =
-    lang.toUpperCase();
+  const currentLanguage =
+    document.getElementById("currentLanguage");
+
+  if (currentLanguage) {
+    currentLanguage.textContent =
+      lang.toUpperCase();
+  }
 
 
   const translatableElements =
-    document.querySelectorAll("[data-it][data-en]");
+    document.querySelectorAll(
+      "[data-it][data-en]"
+    );
 
 
   translatableElements.forEach(element => {
 
     if (lang === "it") {
-      element.textContent = element.dataset.it;
+      element.textContent =
+        element.dataset.it;
     }
 
     if (lang === "en") {
-      element.textContent = element.dataset.en;
+      element.textContent =
+        element.dataset.en;
     }
 
   });
 
 
-  document
-    .getElementById("languageMenu")
-    .classList
-    .remove("active");
+  const languageMenu =
+    document.getElementById("languageMenu");
+
+  if (languageMenu) {
+    languageMenu.classList.remove("active");
+  }
 
 
-  localStorage.setItem("language", lang);
+  localStorage.setItem(
+    "language",
+    lang
+  );
 }
 
 
 function closeCookie() {
-  document.getElementById("cookieBar").style.display = "none";
-  localStorage.setItem("cookieAccepted", "true");
+
+  const cookieBar =
+    document.getElementById("cookieBar");
+
+  if (cookieBar) {
+    cookieBar.style.display = "none";
+  }
+
+  localStorage.setItem(
+    "cookieAccepted",
+    "true"
+  );
 }
 
 
-document.addEventListener("click", function(event) {
+document.addEventListener(
+  "click",
+  function(event) {
 
-  const selector =
-    document.querySelector(".language-selector");
+    const selector =
+      document.querySelector(
+        ".language-selector"
+      );
 
-  if (
-    selector &&
-    !selector.contains(event.target)
-  ) {
+    const menu =
+      document.getElementById(
+        "languageMenu"
+      );
 
-    document
-      .getElementById("languageMenu")
-      .classList
-      .remove("active");
-
-  }
-
-});
-
-
-window.addEventListener("DOMContentLoaded", async function() {
-
-  await loadWebsiteSections();
-
-
-  const savedLanguage =
-    localStorage.getItem("language") || "it";
-
-  setLanguage(savedLanguage);
-
-
-  const cookieAccepted =
-    localStorage.getItem("cookieAccepted");
-
-  if (cookieAccepted === "true") {
-
-    document
-      .getElementById("cookieBar")
-      .style
-      .display = "none";
+    if (
+      selector &&
+      menu &&
+      !selector.contains(event.target)
+    ) {
+      menu.classList.remove("active");
+    }
 
   }
+);
 
-});
+
+window.addEventListener(
+  "DOMContentLoaded",
+  async function() {
+
+    await loadWebsiteSections();
+
+
+    const savedLanguage =
+      localStorage.getItem("language")
+      || "it";
+
+
+    setLanguage(
+      savedLanguage
+    );
+
+
+    const cookieAccepted =
+      localStorage.getItem(
+        "cookieAccepted"
+      );
+
+
+    if (
+      cookieAccepted === "true"
+    ) {
+
+      const cookieBar =
+        document.getElementById(
+          "cookieBar"
+        );
+
+      if (cookieBar) {
+        cookieBar.style.display =
+          "none";
+      }
+
+    }
+
+  }
+);
