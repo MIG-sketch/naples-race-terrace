@@ -1,11 +1,16 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/+esm";
 
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js/+esm";
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 const container = document.getElementById("course3d");
 
 if (!container) {
-  console.error("course3d container not found");
+  throw new Error("Container #course3d non trovato");
 }
 
 
@@ -15,7 +20,13 @@ if (!container) {
 
 const scene = new THREE.Scene();
 
-scene.background = new THREE.Color(0x050b13);
+scene.background = new THREE.Color(0x03080f);
+
+scene.fog = new THREE.Fog(
+  0x03080f,
+  22,
+  45
+);
 
 
 /* =========================================================
@@ -23,13 +34,17 @@ scene.background = new THREE.Color(0x050b13);
 ========================================================= */
 
 const camera = new THREE.PerspectiveCamera(
-  35,
-  container.clientWidth / container.clientHeight,
+  38,
+  1,
   0.1,
-  1000
+  100
 );
 
-camera.position.set(0, 9, 18);
+camera.position.set(
+  0,
+  9,
+  17
+);
 
 
 /* =========================================================
@@ -45,18 +60,23 @@ renderer.setPixelRatio(
   Math.min(window.devicePixelRatio, 2)
 );
 
-renderer.setSize(
-  container.clientWidth,
-  container.clientHeight
+renderer.outputColorSpace =
+  THREE.SRGBColorSpace;
+
+renderer.toneMapping =
+  THREE.ACESFilmicToneMapping;
+
+renderer.toneMappingExposure =
+  1.25;
+
+renderer.shadowMap.enabled = true;
+
+renderer.shadowMap.type =
+  THREE.PCFSoftShadowMap;
+
+container.appendChild(
+  renderer.domElement
 );
-
-renderer.outputColorSpace = THREE.SRGBColorSpace;
-
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-
-renderer.toneMappingExposure = 1.4;
-
-container.appendChild(renderer.domElement);
 
 
 /* =========================================================
@@ -70,74 +90,108 @@ const controls = new OrbitControls(
 
 controls.enableDamping = true;
 
-controls.dampingFactor = 0.06;
+controls.dampingFactor = 0.055;
 
 controls.enablePan = false;
 
+controls.enableZoom = true;
+
 controls.minDistance = 10;
 
-controls.maxDistance = 28;
+controls.maxDistance = 25;
 
-controls.minPolarAngle = Math.PI * 0.20;
+controls.minPolarAngle =
+  Math.PI * 0.20;
 
-controls.maxPolarAngle = Math.PI * 0.48;
+controls.maxPolarAngle =
+  Math.PI * 0.49;
 
-controls.target.set(0, 0.5, 0);
+controls.target.set(
+  0,
+  0,
+  0
+);
+
+
+/* automatic slow rotation */
+
+controls.autoRotate = true;
+
+controls.autoRotateSpeed = 0.45;
+
+
+/* stop auto rotation when user interacts */
+
+controls.addEventListener(
+  "start",
+  () => {
+    controls.autoRotate = false;
+  }
+);
 
 
 /* =========================================================
-   LIGHTS
+   LIGHTING
 ========================================================= */
 
-const ambientLight = new THREE.AmbientLight(
-  0xffffff,
-  1.4
-);
+const ambientLight =
+  new THREE.AmbientLight(
+    0xffffff,
+    1.4
+  );
 
 scene.add(ambientLight);
 
 
-const keyLight = new THREE.DirectionalLight(
-  0x9edcff,
-  4
-);
 
-keyLight.position.set(
-  -7,
+const mainLight =
+  new THREE.DirectionalLight(
+    0xffffff,
+    4.5
+  );
+
+mainLight.position.set(
+  -6,
   12,
   8
 );
 
-scene.add(keyLight);
+mainLight.castShadow = true;
+
+scene.add(mainLight);
 
 
-const rimLight = new THREE.DirectionalLight(
-  0xffffff,
-  3
-);
 
-rimLight.position.set(
-  10,
-  4,
-  -5
-);
-
-scene.add(rimLight);
-
-
-const blueLight = new THREE.PointLight(
-  0x58aee0,
-  35,
-  30
-);
+const blueLight =
+  new THREE.DirectionalLight(
+    0x78c9f2,
+    3
+  );
 
 blueLight.position.set(
-  0,
-  6,
-  4
+  10,
+  5,
+  -4
 );
 
 scene.add(blueLight);
+
+
+
+const rimLight =
+  new THREE.PointLight(
+    0xbde8ff,
+    35,
+    30
+  );
+
+rimLight.position.set(
+  -6,
+  3,
+  -3
+);
+
+scene.add(rimLight);
 
 
 /* =========================================================
@@ -146,23 +200,23 @@ scene.add(blueLight);
 
 const floorGeometry =
   new THREE.PlaneGeometry(
-    35,
-    35
+    38,
+    38
   );
 
 
 const floorMaterial =
   new THREE.MeshPhysicalMaterial({
 
-    color: 0x03070c,
+    color: 0x050b12,
 
-    roughness: 0.22,
+    roughness: 0.20,
 
-    metalness: 0.55,
+    metalness: 0.65,
 
     clearcoat: 1,
 
-    clearcoatRoughness: 0.18
+    clearcoatRoughness: 0.12
 
   });
 
@@ -179,271 +233,428 @@ floor.rotation.x =
 
 
 floor.position.y =
-  -1.2;
+  -1.45;
+
+
+floor.receiveShadow = true;
 
 
 scene.add(floor);
 
 
 /* =========================================================
-   GRID
+   SUBTLE GRID
 ========================================================= */
 
 const grid =
   new THREE.GridHelper(
-    30,
-    30,
-    0x15334a,
-    0x0d2436
+    34,
+    34,
+    0x16364e,
+    0x0b2132
   );
 
 
 grid.position.y =
-  -1.18;
-
-
-grid.material.opacity =
-  0.32;
+  -1.42;
 
 
 grid.material.transparent =
   true;
 
 
+grid.material.opacity =
+  0.20;
+
+
 scene.add(grid);
 
 
 /* =========================================================
-   RACE COURSE
+   COURSE GROUP
 ========================================================= */
 
-const coursePoints = [
+const courseGroup =
+  new THREE.Group();
+
+
+scene.add(courseGroup);
+
+
+/* =========================================================
+   COURSE SHAPE
+========================================================= */
+
+/*
+  Per ora è un percorso concettuale.
+
+  Più avanti sostituiremo questi punti
+  con il campo di regata definitivo.
+*/
+
+const points = [
 
   new THREE.Vector3(
-    -6,
+    -6.2,
     0,
-    -1
+    -1.8
   ),
 
   new THREE.Vector3(
-    -4,
-    0.8,
-    -3
+    -4.4,
+    0.15,
+    -3.3
   ),
 
   new THREE.Vector3(
-    -1,
-    0.2,
-    -2.6
+    -1.2,
+    0.30,
+    -3.0
   ),
 
   new THREE.Vector3(
-    1,
-    0.5,
-    -1.2
+    1.8,
+    0.10,
+    -2.2
   ),
 
   new THREE.Vector3(
-    5,
-    0.2,
-    -3
+    5.3,
+    0.30,
+    -3.0
   ),
 
   new THREE.Vector3(
-    7,
-    0.5,
-    -1
+    7.0,
+    0,
+    -1.0
   ),
 
   new THREE.Vector3(
-    5,
-    0.3,
-    2
-  ),
-
-  new THREE.Vector3(
-    1,
-    0.6,
-    1
-  ),
-
-  new THREE.Vector3(
-    -2,
-    0.3,
-    2.6
-  ),
-
-  new THREE.Vector3(
-    -6,
-    0.1,
+    6.2,
+    0.15,
     1.5
   ),
 
   new THREE.Vector3(
-    -6,
-    0,
-    -1
+    3.4,
+    0.20,
+    2.8
+  ),
+
+  new THREE.Vector3(
+    0.4,
+    0.05,
+    2.0
+  ),
+
+  new THREE.Vector3(
+    -2.6,
+    0.30,
+    3.0
+  ),
+
+  new THREE.Vector3(
+    -5.8,
+    0.10,
+    1.7
   )
 
 ];
 
 
-const courseCurve =
+/* smooth closed curve */
+
+const curve =
   new THREE.CatmullRomCurve3(
-    coursePoints,
+    points,
     true,
-    "catmullrom",
-    0.45
+    "centripetal"
   );
 
 
-const courseGeometry =
+/* =========================================================
+   MAIN 3D TUBE
+========================================================= */
+
+const tubeGeometry =
   new THREE.TubeGeometry(
-    courseCurve,
-    220,
-    0.24,
-    18,
+    curve,
+    300,
+    0.30,
+    24,
     true
   );
 
 
-const courseMaterial =
+const tubeMaterial =
   new THREE.MeshPhysicalMaterial({
 
-    color: 0x78c9f2,
+    color: 0x73c7f2,
 
-    roughness: 0.17,
+    metalness: 0.70,
 
-    metalness: 0.72,
+    roughness: 0.16,
 
     clearcoat: 1,
 
-    clearcoatRoughness: 0.08
+    clearcoatRoughness: 0.05
 
   });
 
 
-const course =
+const tube =
   new THREE.Mesh(
-    courseGeometry,
-    courseMaterial
+    tubeGeometry,
+    tubeMaterial
   );
 
 
-scene.add(course);
+tube.castShadow = true;
+
+tube.receiveShadow = true;
+
+
+courseGroup.add(tube);
 
 
 /* =========================================================
-   INNER LIGHT TRACE
+   INNER HIGHLIGHT
 ========================================================= */
 
-const glowGeometry =
+const highlightGeometry =
   new THREE.TubeGeometry(
-    courseCurve,
-    220,
-    0.08,
+    curve,
+    300,
+    0.075,
     12,
     true
   );
 
 
-const glowMaterial =
+const highlightMaterial =
   new THREE.MeshBasicMaterial({
 
-    color: 0xd9f2ff
+    color: 0xe4f6ff
 
   });
 
 
-const glow =
+const highlight =
   new THREE.Mesh(
-    glowGeometry,
-    glowMaterial
+    highlightGeometry,
+    highlightMaterial
   );
 
 
-scene.add(glow);
+courseGroup.add(highlight);
+
+
+/* =========================================================
+   COURSE SUPPORT SHADOW
+========================================================= */
+
+const shadowCurveGeometry =
+  new THREE.TubeGeometry(
+    curve,
+    300,
+    0.35,
+    20,
+    true
+  );
+
+
+const shadowMaterial =
+  new THREE.MeshBasicMaterial({
+
+    color: 0x020509,
+
+    transparent: true,
+
+    opacity: 0.30
+
+  });
+
+
+const courseShadow =
+  new THREE.Mesh(
+    shadowCurveGeometry,
+    shadowMaterial
+  );
+
+
+courseShadow.position.y =
+  -0.25;
+
+
+courseGroup.add(courseShadow);
 
 
 /* =========================================================
    BUOYS
 ========================================================= */
 
+const buoyGeometry =
+  new THREE.SphereGeometry(
+    0.19,
+    32,
+    32
+  );
+
+
 const buoyMaterial =
-  new THREE.MeshStandardMaterial({
+  new THREE.MeshPhysicalMaterial({
 
     color: 0xffffff,
 
-    roughness: 0.25,
+    metalness: 0.25,
 
-    metalness: 0.3
+    roughness: 0.18,
+
+    clearcoat: 1
 
   });
 
 
-const buoyPositions = [
-
-  [-6, 0, -1],
-
-  [-1, 0.2, -2.6],
-
-  [5, 0.2, -3],
-
-  [7, 0.5, -1],
-
-  [5, 0.3, 2],
-
-  [-2, 0.3, 2.6]
-
+const buoyIndexes = [
+  0,
+  2,
+  4,
+  5,
+  7,
+  9
 ];
 
 
-buoyPositions.forEach(position => {
+buoyIndexes.forEach(index => {
 
   const buoy =
     new THREE.Mesh(
-
-      new THREE.SphereGeometry(
-        0.18,
-        24,
-        24
-      ),
-
+      buoyGeometry,
       buoyMaterial
-
     );
 
 
-  buoy.position.set(
-    position[0],
-    position[1],
-    position[2]
+  buoy.position.copy(
+    points[index]
   );
 
 
-  scene.add(buoy);
+  buoy.position.y += 0.10;
+
+
+  buoy.castShadow = true;
+
+
+  courseGroup.add(buoy);
 
 });
 
 
 /* =========================================================
-   GROUP ROTATION
+   START / FINISH MARKER
 ========================================================= */
 
-const objectsToRotate = [
-  course,
-  glow
-];
+const startGeometry =
+  new THREE.CylinderGeometry(
+    0.16,
+    0.22,
+    0.7,
+    20
+  );
 
 
-let autoRotate = true;
+const startMaterial =
+  new THREE.MeshPhysicalMaterial({
+
+    color: 0x59aee0,
+
+    roughness: 0.15,
+
+    metalness: 0.45
+
+  });
 
 
-renderer.domElement.addEventListener(
-  "pointerdown",
-  () => {
-    autoRotate = false;
+const startMarker =
+  new THREE.Mesh(
+    startGeometry,
+    startMaterial
+  );
+
+
+startMarker.position.copy(
+  points[0]
+);
+
+
+startMarker.position.y += 0.35;
+
+
+courseGroup.add(startMarker);
+
+
+/* =========================================================
+   POSITION MODEL
+========================================================= */
+
+courseGroup.rotation.x =
+  -0.03;
+
+
+courseGroup.position.y =
+  0.20;
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function resize() {
+
+  const width =
+    container.clientWidth;
+
+
+  const height =
+    container.clientHeight;
+
+
+  if (
+    width === 0 ||
+    height === 0
+  ) {
+    return;
   }
+
+
+  camera.aspect =
+    width / height;
+
+
+  camera.updateProjectionMatrix();
+
+
+  renderer.setSize(
+    width,
+    height,
+    false
+  );
+
+}
+
+
+resize();
+
+
+const resizeObserver =
+  new ResizeObserver(
+    resize
+  );
+
+
+resizeObserver.observe(
+  container
 );
 
 
@@ -451,25 +662,15 @@ renderer.domElement.addEventListener(
    ANIMATION
 ========================================================= */
 
+let animationFrame;
+
+
 function animate() {
 
-  requestAnimationFrame(
-    animate
-  );
-
-
-  if (autoRotate) {
-
-    objectsToRotate.forEach(
-      object => {
-
-        object.rotation.y +=
-          0.0015;
-
-      }
+  animationFrame =
+    requestAnimationFrame(
+      animate
     );
-
-  }
 
 
   controls.update();
@@ -487,35 +688,34 @@ animate();
 
 
 /* =========================================================
-   RESIZE
+   TAB VISIBILITY
 ========================================================= */
 
-function resizeRenderer() {
+document.addEventListener(
+  "visibilitychange",
+  () => {
 
-  const width =
-    container.clientWidth;
+    if (
+      document.hidden &&
+      animationFrame
+    ) {
 
+      cancelAnimationFrame(
+        animationFrame
+      );
 
-  const height =
-    container.clientHeight;
+      animationFrame = null;
 
+    }
 
-  camera.aspect =
-    width / height;
+    else if (
+      !document.hidden &&
+      !animationFrame
+    ) {
 
+      animate();
 
-  camera.updateProjectionMatrix();
+    }
 
-
-  renderer.setSize(
-    width,
-    height
-  );
-
-}
-
-
-window.addEventListener(
-  "resize",
-  resizeRenderer
+  }
 );
