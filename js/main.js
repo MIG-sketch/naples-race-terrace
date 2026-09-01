@@ -1,5 +1,6 @@
 async function loadSection(containerId, filePath) {
   try {
+
     const response = await fetch(filePath);
 
     if (!response.ok) {
@@ -10,30 +11,22 @@ async function loadSection(containerId, filePath) {
 
     const container = document.getElementById(containerId);
 
-    if (!container) {
-      return;
-    }
+    if (!container) return;
 
     container.innerHTML = html;
 
   } catch (error) {
+
     console.error(error);
+
+    const container = document.getElementById(containerId);
+
+    if (container) {
+      container.innerHTML =
+        "<p>Errore nel caricamento della sezione.</p>";
+    }
+
   }
-}
-
-
-async function loadCourseScript() {
-  if (document.getElementById("course-script")) {
-    return;
-  }
-
-  const script = document.createElement("script");
-
-  script.id = "course-script";
-  script.type = "module";
-  script.src = "percorso/circuit.js";
-
-  document.body.appendChild(script);
 }
 
 
@@ -42,11 +35,6 @@ async function loadWebsiteSections() {
   await loadSection(
     "experience",
     "esperienza/index.html"
-  );
-
-  await loadSection(
-    "course",
-    "percorso/index.html"
   );
 
   await loadSection(
@@ -74,18 +62,18 @@ async function loadWebsiteSections() {
     "contatti/index.html"
   );
 
-  await loadCourseScript();
 }
 
 
 function toggleLanguageMenu() {
-  const menu = document.getElementById("languageMenu");
 
-  if (!menu) {
-    return;
-  }
+  const menu =
+    document.getElementById("languageMenu");
+
+  if (!menu) return;
 
   menu.classList.toggle("active");
+
 }
 
 
@@ -108,23 +96,26 @@ function setLanguage(lang) {
     );
 
 
-  translatableElements.forEach(element => {
+  translatableElements.forEach(
+    element => {
 
-    if (lang === "it") {
-      element.textContent =
-        element.dataset.it;
+      if (lang === "it") {
+        element.textContent =
+          element.dataset.it;
+      }
+
+      if (lang === "en") {
+        element.textContent =
+          element.dataset.en;
+      }
+
     }
-
-    if (lang === "en") {
-      element.textContent =
-        element.dataset.en;
-    }
-
-  });
+  );
 
 
   const languageMenu =
     document.getElementById("languageMenu");
+
 
   if (languageMenu) {
     languageMenu.classList.remove("active");
@@ -135,6 +126,7 @@ function setLanguage(lang) {
     "language",
     lang
   );
+
 }
 
 
@@ -147,10 +139,12 @@ function closeCookie() {
     cookieBar.style.display = "none";
   }
 
+
   localStorage.setItem(
     "cookieAccepted",
     "true"
   );
+
 }
 
 
@@ -168,12 +162,15 @@ document.addEventListener(
         "languageMenu"
       );
 
+
     if (
       selector &&
       menu &&
       !selector.contains(event.target)
     ) {
+
       menu.classList.remove("active");
+
     }
 
   }
@@ -192,9 +189,7 @@ window.addEventListener(
       || "it";
 
 
-    setLanguage(
-      savedLanguage
-    );
+    setLanguage(savedLanguage);
 
 
     const cookieAccepted =
@@ -212,9 +207,9 @@ window.addEventListener(
           "cookieBar"
         );
 
+
       if (cookieBar) {
-        cookieBar.style.display =
-          "none";
+        cookieBar.style.display = "none";
       }
 
     }
