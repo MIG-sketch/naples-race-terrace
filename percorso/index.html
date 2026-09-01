@@ -1,52 +1,350 @@
-<section class="course-section">
+<!DOCTYPE html>
+<html lang="it">
 
-  <div class="course-heading">
+<head>
 
-    <p class="section-label">
-      INTERACTIVE
-    </p>
+  <meta charset="UTF-8">
 
-    <h2
-      data-it="Il campo di regata, nelle tue mani"
-      data-en="The race course, in your hands"
-    >
-      Il campo di regata, nelle tue mani
-    </h2>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    <p
-      class="course-description"
-      data-it="Esplora in 3D il campo di regata nel Golfo di Napoli."
-      data-en="Explore the race course in the Gulf of Naples in 3D."
-    >
-      Esplora in 3D il campo di regata nel Golfo di Napoli.
-    </p>
+  <title>
+    Naples Race Terrace
+  </title>
 
-  </div>
+  <meta
+    name="description"
+    content="Private terrace hospitality in Naples with privileged views over the race, Italian cuisine and drinks."
+  >
 
-  <div class="course-viewer">
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 
-    <div id="course3d"></div>
+</head>
 
-    <div class="course-instruction">
-      <span
-        data-it="TRASCINA PER RUOTARE · SCROLL PER ZOOMARE"
-        data-en="DRAG TO ROTATE · SCROLL TO ZOOM"
+
+<body>
+
+
+  <section
+    class="hero"
+    id="home"
+  >
+
+
+    <nav class="navbar">
+
+
+      <a
+        href="#home"
+        class="logo"
       >
-        TRASCINA PER RUOTARE · SCROLL PER ZOOMARE
-      </span>
+
+        Naples
+
+        <span>
+          Race Terrace
+        </span>
+
+      </a>
+
+
+
+      <div class="nav-center">
+
+
+        <a
+          href="#experience"
+          data-it="L'esperienza"
+          data-en="Experience"
+        >
+          L'esperienza
+        </a>
+
+
+        <a
+          href="#course"
+          data-it="Percorso"
+          data-en="Course"
+        >
+          Percorso
+        </a>
+
+
+        <a
+          href="#tickets"
+          data-it="Biglietti"
+          data-en="Tickets"
+        >
+          Biglietti
+        </a>
+
+
+        <a
+          href="#guide"
+          data-it="Guida"
+          data-en="Guide"
+        >
+          Guida
+        </a>
+
+
+        <a
+          href="#faq"
+          data-it="FAQ"
+          data-en="FAQ"
+        >
+          FAQ
+        </a>
+
+
+        <a
+          href="#team"
+          data-it="Team"
+          data-en="Team"
+        >
+          Team
+        </a>
+
+
+        <a
+          href="#contact"
+          data-it="Contatti"
+          data-en="Contacts"
+        >
+          Contatti
+        </a>
+
+
+      </div>
+
+
+
+      <div class="nav-right">
+
+
+        <div class="language-selector">
+
+
+          <button
+            class="language-button"
+            type="button"
+            onclick="toggleLanguageMenu()"
+          >
+
+            <span id="currentLanguage">
+              IT
+            </span>
+
+            <span class="language-arrow">
+              ⌄
+            </span>
+
+          </button>
+
+
+
+          <div
+            class="language-menu"
+            id="languageMenu"
+          >
+
+
+            <button
+              type="button"
+              onclick="setLanguage('it')"
+            >
+              Italiano
+            </button>
+
+
+            <button
+              type="button"
+              onclick="setLanguage('en')"
+            >
+              English
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <a
+          href="#tickets"
+          class="book-button"
+          data-it="Prenota ora"
+          data-en="Book now"
+        >
+          Prenota ora
+        </a>
+
+
+      </div>
+
+
+    </nav>
+
+
+
+    <div class="hero-content">
+
+
+      <div
+        class="eyebrow"
+        data-it="America's Cup · Napoli · 2027"
+        data-en="America's Cup · Naples · 2027"
+      >
+        America's Cup · Napoli · 2027
+      </div>
+
+
+
+      <h1>
+
+
+        <span
+          data-it="La regata,"
+          data-en="The race,"
+        >
+          La regata,
+        </span>
+
+
+        <span
+          class="accent"
+          data-it="vista dall'alto."
+          data-en="from above."
+        >
+          vista dall'alto.
+        </span>
+
+
+      </h1>
+
+
+
+      <p
+        class="hero-text"
+        data-it="Una terrazza privata sul Golfo di Napoli. Vista privilegiata sulla regata, cucina italiana preparata al momento, drinks e posti limitati."
+        data-en="A private terrace overlooking the Gulf of Naples. A privileged view of the race, freshly prepared Italian cuisine, drinks and limited seating."
+      >
+        Una terrazza privata sul Golfo di Napoli.
+        Vista privilegiata sulla regata,
+        cucina italiana preparata al momento,
+        drinks e posti limitati.
+      </p>
+
+
+
+      <div class="hero-buttons">
+
+
+        <a
+          href="#tickets"
+          class="btn btn-primary"
+          data-it="Riserva il tuo posto →"
+          data-en="Reserve your seat →"
+        >
+          Riserva il tuo posto →
+        </a>
+
+
+        <a
+          href="#experience"
+          class="btn btn-secondary"
+          data-it="Scopri l'esperienza"
+          data-en="Discover the experience"
+        >
+          Scopri l'esperienza
+        </a>
+
+
+      </div>
+
+
     </div>
 
-  </div>
 
-  <div class="course-note">
+
+    <a
+      href="#experience"
+      class="scroll-indicator"
+      aria-label="Scroll to experience"
+    ></a>
+
+
+  </section>
+
+
+
+  <main>
+
+
+    <div id="experience"></div>
+
+
+    <div id="course"></div>
+
+
+    <div id="tickets"></div>
+
+
+    <div id="guide"></div>
+
+
+    <div id="faq"></div>
+
+
+    <div id="team"></div>
+
+
+    <div id="contact"></div>
+
+
+  </main>
+
+
+
+  <div
+    class="cookie-bar"
+    id="cookieBar"
+  >
+
 
     <span
-      data-it="Visualizzazione concettuale del campo di regata."
-      data-en="Concept visualization of the race course."
+      data-it="Questo sito usa solo cookie tecnici necessari al funzionamento. Niente tracciamento, niente profilazione."
+      data-en="This website only uses technical cookies required for its operation. No tracking, no profiling."
     >
-      Visualizzazione concettuale del campo di regata.
+      Questo sito usa solo cookie tecnici necessari al funzionamento.
+      Niente tracciamento, niente profilazione.
     </span>
+
+
+    <button
+      type="button"
+      onclick="closeCookie()"
+      data-it="Ho capito"
+      data-en="Got it"
+    >
+      Ho capito
+    </button>
+
 
   </div>
 
-</section>
+
+
+  <script src="js/main.js"></script>
+
+
+</body>
+
+</html>
