@@ -1,4 +1,5 @@
 async function loadSection(containerId, filePath) {
+
   try {
 
     const response = await fetch(filePath);
@@ -27,42 +28,45 @@ async function loadSection(containerId, filePath) {
     }
 
   }
+
 }
+
 
 
 async function loadWebsiteSections() {
 
   await loadSection(
     "experience",
-    "esperienza/index.html"
-  );
-
-  await loadSection(
-    "tickets",
-    "biglietti/index.html"
+    "esperienza/index.html?v=2"
   );
 
   await loadSection(
     "guide",
-    "guida/index.html"
+    "guida/index.html?v=2"
   );
 
   await loadSection(
     "faq",
-    "faq/index.html"
+    "faq/index.html?v=2"
+  );
+
+  await loadSection(
+    "tickets",
+    "biglietti/index.html?v=2"
   );
 
   await loadSection(
     "team",
-    "team/index.html"
+    "team/index.html?v=2"
   );
 
   await loadSection(
     "contact",
-    "contatti/index.html"
+    "contatti/index.html?v=2"
   );
 
 }
+
 
 
 function toggleLanguageMenu() {
@@ -75,6 +79,7 @@ function toggleLanguageMenu() {
   menu.classList.toggle("active");
 
 }
+
 
 
 function setLanguage(lang) {
@@ -130,6 +135,7 @@ function setLanguage(lang) {
 }
 
 
+
 function closeCookie() {
 
   const cookieBar =
@@ -146,6 +152,7 @@ function closeCookie() {
   );
 
 }
+
 
 
 document.addEventListener(
@@ -175,6 +182,7 @@ document.addEventListener(
 
   }
 );
+
 
 
 window.addEventListener(
