@@ -1148,6 +1148,7 @@ h1 .accent {
 
 .contact-intro {
   max-width: 900px;
+
   margin-bottom: 75px;
 }
 
@@ -1161,12 +1162,15 @@ h1 .accent {
   line-height: 1.7;
 }
 
+
+/* EXACTLY 50 / 50 */
+
 .contact-grid {
   width: 100%;
 
   display: grid;
 
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 50% 50%;
 
   border-top: 1px solid rgba(255,255,255,0.16);
 
@@ -1174,11 +1178,17 @@ h1 .accent {
 }
 
 .contact-item {
+  width: 100%;
+
   padding: 40px 35px;
 }
 
+.contact-item:first-child {
+  border-right: 1px solid rgba(255,255,255,0.16);
+}
+
 .contact-item + .contact-item {
-  border-left: 1px solid rgba(255,255,255,0.16);
+  border-left: none;
 }
 
 .contact-label {
@@ -1460,7 +1470,6 @@ h1 .accent {
 
   .experience-image {
     margin-top: 45px;
-
     border-radius: 16px;
   }
 
@@ -1507,6 +1516,9 @@ h1 .accent {
     grid-template-columns: 1fr;
   }
 
+
+  /* CONTACT MOBILE */
+
   .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1515,16 +1527,22 @@ h1 .accent {
     padding: 28px 0;
   }
 
+  .contact-item:first-child {
+    border-right: 0;
+
+    border-bottom: 1px solid rgba(255,255,255,0.16);
+  }
+
   .contact-item + .contact-item {
     border-left: 0;
-
-    border-top: 1px solid rgba(255,255,255,0.16);
   }
 
   .contact-footer {
     flex-direction: column;
+
     margin-top: 45px;
   }
+
 
   .cookie-bar {
     bottom: 12px;
