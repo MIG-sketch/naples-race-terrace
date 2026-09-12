@@ -108,11 +108,8 @@ img {
 
 .logo {
   font-size: 20px;
-
   letter-spacing: 0.15em;
-
   line-height: 1.2;
-
   text-transform: uppercase;
 }
 
@@ -143,13 +140,11 @@ img {
 
 .nav-center a {
   opacity: 0.88;
-
   transition: 0.25s ease;
 }
 
 .nav-center a:hover {
   color: #8cccf0;
-
   opacity: 1;
 }
 
@@ -202,7 +197,6 @@ img {
 
 .language-arrow {
   color: #8cccf0;
-
   font-size: 12px;
 }
 
@@ -238,9 +232,7 @@ img {
 
 .language-menu.active {
   opacity: 1;
-
   visibility: visible;
-
   transform: translateY(0);
 }
 
@@ -266,7 +258,6 @@ img {
 
 .language-menu button:hover {
   background: rgba(140,204,240,0.14);
-
   color: #8cccf0;
 }
 
@@ -295,7 +286,6 @@ img {
 
 .book-button:hover {
   background: #79c2ec;
-
   transform: translateY(-2px);
 }
 
@@ -421,17 +411,13 @@ h1 .accent {
 
 .btn-primary {
   background: #59aee0;
-
   color: white;
-
   border: 1px solid #59aee0;
 }
 
 .btn-primary:hover {
   background: #80c6ef;
-
   border-color: #80c6ef;
-
   transform: translateY(-2px);
 }
 
@@ -447,7 +433,6 @@ h1 .accent {
 
 .btn-secondary:hover {
   background: rgba(255,255,255,0.10);
-
   transform: translateY(-2px);
 }
 
@@ -500,6 +485,7 @@ h1 .accent {
   padding: 130px 7%;
 }
 
+.experience-section h2,
 .guide-section h2,
 .faq-section h2,
 .team-section h2,
@@ -523,137 +509,105 @@ h1 .accent {
 ========================================================= */
 
 .experience-section {
-  background: #eef6fa;
-
-  color: #071a2b;
-
-  padding: 130px 7% 110px;
+  background: #071a2b;
+  color: white;
 }
 
 .experience-intro {
-  max-width: 1000px;
-
-  margin-bottom: 75px;
+  max-width: 950px;
+  margin-bottom: 65px;
 }
 
-.experience-intro h2 {
-  font-family: 'Playfair Display', serif;
-
-  font-size: clamp(54px, 6.5vw, 96px);
-
-  line-height: 0.98;
-
-  letter-spacing: -0.04em;
-
-  font-weight: 400;
-
+.experience-section h2 {
   max-width: 950px;
-
-  margin-bottom: 32px;
+  color: white;
 }
 
 .experience-description {
-  max-width: 820px;
+  max-width: 760px;
 
-  font-size: 20px;
+  font-size: 19px;
 
-  line-height: 1.65;
+  line-height: 1.7;
 
-  color: #4f6573;
+  color: rgba(255,255,255,0.65);
 }
 
-
-/* EXPERIENCE CARDS */
-
 .experience-grid {
+  width: 100%;
+
   display: grid;
 
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 20px;
-
-  width: 100%;
-
-  margin-top: 10px;
+  gap: 22px;
 }
 
 .experience-card {
-  min-height: 440px;
+  min-height: 350px;
 
-  padding: 42px 40px 38px;
-
-  background: #f8fbfd;
-
-  border: 1px solid rgba(7,26,43,0.12);
-
-  border-radius: 18px;
+  padding: 40px;
 
   display: flex;
 
   flex-direction: column;
 
+  background: #0d2234;
+
+  border: 1px solid rgba(140,204,240,0.14);
+
+  border-radius: 18px;
+
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+    border-color 0.3s ease,
+    background 0.3s ease;
 }
 
 .experience-card:hover {
   transform: translateY(-6px);
 
-  border-color: rgba(89,174,224,0.55);
+  border-color: rgba(140,204,240,0.55);
 
-  box-shadow:
-    0 20px 45px rgba(7,26,43,0.08);
+  background: #10283c;
 }
 
 .experience-number {
   display: block;
 
-  margin-bottom: 32px;
+  color: #8cccf0;
 
-  color: #59aee0;
+  font-size: 12px;
 
-  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.22em;
 
-  font-size: 14px;
+  margin-bottom: 65px;
 }
 
 .experience-card h3 {
   font-family: 'Playfair Display', serif;
 
-  font-size: clamp(30px, 2.5vw, 42px);
+  color: #8cccf0;
 
-  font-weight: 400;
+  font-size: 36px;
 
   line-height: 1.08;
 
-  letter-spacing: -0.02em;
+  font-weight: 400;
 
   margin-bottom: 22px;
-
-  color: #071a2b;
 }
 
 .experience-card p {
-  color: #536875;
+  color: rgba(255,255,255,0.66);
 
   font-size: 16px;
 
   line-height: 1.75;
-
-  margin-top: auto;
 }
 
-
-/* FINAL CLAIM */
-
 .experience-claim {
-  margin-top: 70px;
-
-  padding-top: 32px;
-
-  border-top: 1px solid rgba(7,26,43,0.14);
+  margin-top: 55px;
 
   text-align: center;
 }
@@ -661,17 +615,11 @@ h1 .accent {
 .experience-claim p {
   font-family: 'Playfair Display', serif;
 
-  font-size: clamp(28px, 3.5vw, 52px);
-
-  line-height: 1.25;
-
   font-style: italic;
 
-  color: #59aee0;
+  font-size: 21px;
 
-  max-width: 1000px;
-
-  margin: 0 auto;
+  color: rgba(255,255,255,0.62);
 }
 
 
@@ -858,7 +806,6 @@ h1 .accent {
 
 .ticket-button:hover {
   background: #59aee0;
-
   color: white;
 }
 
@@ -897,7 +844,6 @@ h1 .accent {
 
 .ticket-button-filled {
   background: #59aee0;
-
   color: white;
 }
 
@@ -908,13 +854,11 @@ h1 .accent {
 
 .guide-section {
   background: #e8f3f9;
-
   color: #071a2b;
 }
 
 .guide-intro {
   max-width: 850px;
-
   margin-bottom: 80px;
 }
 
@@ -987,19 +931,16 @@ h1 .accent {
 
 .faq-section {
   background: #ffffff;
-
   color: #071a2b;
 }
 
 .faq-intro {
   max-width: 850px;
-
   margin-bottom: 70px;
 }
 
 .faq-intro > p:last-child {
   color: #63727c;
-
   font-size: 17px;
 }
 
@@ -1011,7 +952,6 @@ h1 .accent {
 
 .faq-item {
   border-bottom: 1px solid #ccd8df;
-
   padding: 0;
 }
 
@@ -1074,13 +1014,11 @@ h1 .accent {
 
 .team-section {
   background: #dcecf6;
-
   color: #071a2b;
 }
 
 .team-intro {
   max-width: 900px;
-
   margin-bottom: 70px;
 }
 
@@ -1129,6 +1067,30 @@ h1 .accent {
   letter-spacing: 0.15em;
 
   text-transform: uppercase;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* Foto reali del team */
+
+.team-photo {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  max-width: none;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  display: block;
 }
 
 .team-card-content {
@@ -1184,7 +1146,6 @@ h1 .accent {
 
 .contact-intro {
   max-width: 900px;
-
   margin-bottom: 75px;
 }
 
@@ -1342,7 +1303,6 @@ h1 .accent {
 
   .navbar {
     grid-template-columns: 1fr auto;
-
     padding: 24px 5%;
   }
 
@@ -1359,11 +1319,15 @@ h1 .accent {
   }
 
   .experience-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
-  .experience-card:last-child {
-    grid-column: 1 / -1;
+  .experience-card {
+    min-height: auto;
+  }
+
+  .experience-number {
+    margin-bottom: 40px;
   }
 
   .ticket-grid {
@@ -1389,7 +1353,6 @@ h1 .accent {
 
   .navbar {
     padding: 20px 6%;
-
     grid-template-columns: 1fr auto;
   }
 
@@ -1399,7 +1362,6 @@ h1 .accent {
 
   .logo span {
     font-size: 8px;
-
     letter-spacing: 0.18em;
   }
 
@@ -1409,7 +1371,6 @@ h1 .accent {
 
   .book-button {
     padding: 11px 15px;
-
     font-size: 11px;
   }
 
@@ -1419,17 +1380,13 @@ h1 .accent {
 
   .hero-content {
     width: 88%;
-
     padding: 70px 0 120px;
   }
 
   .eyebrow {
     font-size: 9px;
-
     letter-spacing: 0.20em;
-
     gap: 10px;
-
     margin-bottom: 25px;
   }
 
@@ -1440,13 +1397,11 @@ h1 .accent {
 
   h1 {
     font-size: clamp(55px, 18vw, 90px);
-
     line-height: 0.92;
   }
 
   .hero-text {
     margin-top: 30px;
-
     font-size: 16px;
   }
 
@@ -1479,36 +1434,30 @@ h1 .accent {
     padding: 90px 6%;
   }
 
-  .experience-intro {
-    margin-bottom: 50px;
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .experience-card {
+    padding: 30px;
+    min-height: 320px;
+  }
+
+  .experience-number {
+    margin-bottom: 45px;
+  }
+
+  .experience-card h3 {
+    font-size: 32px;
   }
 
   .experience-description {
     font-size: 17px;
   }
 
-  .experience-grid {
-    grid-template-columns: 1fr;
-
-    gap: 14px;
-  }
-
-  .experience-card:last-child {
-    grid-column: auto;
-  }
-
-  .experience-card {
-    min-height: 360px;
-
-    padding: 32px 28px;
-  }
-
-  .experience-card h3 {
-    font-size: 34px;
-  }
-
   .experience-claim {
-    margin-top: 50px;
+    margin-top: 40px;
   }
 
   .tickets-intro {
@@ -1517,7 +1466,6 @@ h1 .accent {
 
   .ticket-grid {
     grid-template-columns: 1fr;
-
     gap: 14px;
   }
 
@@ -1527,7 +1475,6 @@ h1 .accent {
 
   .ticket-card {
     min-height: 510px;
-
     padding: 30px;
   }
 
@@ -1568,7 +1515,6 @@ h1 .accent {
 
   .contact-footer {
     flex-direction: column;
-
     margin-top: 45px;
   }
 
@@ -1616,7 +1562,7 @@ h1 .accent {
     font-size: 15px;
   }
 
-  .experience-intro h2,
+  .experience-section h2,
   .guide-section h2,
   .faq-section h2,
   .team-section h2,
