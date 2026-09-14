@@ -25,13 +25,18 @@ body {
   align-items: center;
   justify-content: center;
   padding: 80px 6%;
+
   background:
-    radial-gradient(circle at center, rgba(89, 174, 224, 0.07), transparent 45%),
+    radial-gradient(
+      circle at center,
+      rgba(89, 174, 224, 0.07),
+      transparent 45%
+    ),
     #071a2b;
 }
 
 .test-content {
-  width: min(1200px, 100%);
+  width: min(1300px, 100%);
   text-align: center;
 }
 
@@ -44,13 +49,17 @@ body {
   margin-bottom: 34px;
 }
 
+
+/* ORIGINAL TITLE */
+
 .main-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(72px, 10vw, 150px);
   line-height: 0.9;
   font-weight: 500;
   letter-spacing: -0.04em;
-  margin-bottom: 70px;
+
+  margin-bottom: 80px;
 }
 
 .main-title span {
@@ -60,58 +69,30 @@ body {
 }
 
 
-/* MASKED VIDEO TEXT */
+/* ========================================
+   MASKED VIDEO HEADING
+======================================== */
 
 .masked-heading {
   position: relative;
+
   width: 100%;
+  height: clamp(150px, 16vw, 260px);
+
   margin: 0 auto 70px;
+
   overflow: hidden;
+
+  isolation: isolate;
 }
+
+
+/* text used as mask */
 
 .masked-text {
-  position: relative;
-  z-index: 2;
-
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(60px, 9vw, 150px);
-  line-height: 0.95;
-  font-weight: 500;
-  letter-spacing: -0.045em;
-
-  color: transparent;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  background-image: url('sea.mp4');
-}
-
-
-/* video vero dietro */
-
-.masked-video {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
 
-  object-fit: cover;
-
-  z-index: 1;
-
-  transform: scale(1.22);
-  will-change: transform;
-}
-
-
-/* maschera video via mix-blend + clip */
-
-.masked-heading::after {
-  content: "NAPLES FROM THE SEA";
-
-  position: absolute;
-  inset: 0;
   z-index: 3;
 
   display: flex;
@@ -119,9 +100,69 @@ body {
   justify-content: center;
 
   font-family: 'Playfair Display', serif;
-  font-size: clamp(60px, 9vw, 150px);
+
+  font-size: clamp(60px, 9vw, 145px);
+
   line-height: 0.95;
+
   font-weight: 500;
+
+  letter-spacing: -0.045em;
+
+  color: white;
+
+  margin: 0;
+
+  pointer-events: none;
+
+  mix-blend-mode: destination-in;
+}
+
+
+/* VIDEO */
+
+.masked-video {
+  position: absolute;
+
+  top: -15%;
+  left: -15%;
+
+  width: 130%;
+  height: 130%;
+
+  object-fit: cover;
+
+  z-index: 1;
+
+  transform: translate3d(0, 0, 0) scale(1.15);
+
+  will-change: transform;
+}
+
+
+/* mask container */
+
+.masked-heading::after {
+  content: "The race, from above.";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 4;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Playfair Display', serif;
+
+  font-size: clamp(60px, 9vw, 145px);
+
+  line-height: 0.95;
+
+  font-weight: 500;
+
   letter-spacing: -0.045em;
 
   color: white;
@@ -132,25 +173,24 @@ body {
 }
 
 
-/* fallback visual layer */
-
-.masked-text {
-  mix-blend-mode: screen;
-}
-
-
-/* descrizione */
+/* DESCRIPTION */
 
 .description {
   max-width: 780px;
+
   margin: 0 auto;
+
   font-size: 20px;
+
   line-height: 1.6;
+
   color: rgba(255, 255, 255, 0.78);
 }
 
 
-/* mobile */
+/* ========================================
+   MOBILE
+======================================== */
 
 @media (max-width: 750px) {
 
@@ -158,18 +198,24 @@ body {
     padding: 60px 6%;
   }
 
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+  }
+
   .main-title {
     font-size: clamp(60px, 18vw, 95px);
-    margin-bottom: 50px;
+    margin-bottom: 55px;
   }
 
   .masked-heading {
+    height: clamp(150px, 34vw, 230px);
     margin-bottom: 50px;
   }
 
   .masked-text,
   .masked-heading::after {
-    font-size: clamp(48px, 15vw, 85px);
+    font-size: clamp(45px, 13vw, 80px);
   }
 
   .description {
