@@ -26,21 +26,22 @@
       </h1>
 
 
-      <!-- VIDEO MASK ANIMATION TEST -->
+      <!-- MASKED VIDEO TEXT TEST -->
 
-      <section
-        class="masked-heading"
-        id="maskedHeading"
+      <div
+        class="video-text"
+        id="videoText"
         aria-label="The race, from above."
       >
 
-        <h2 class="masked-text">
-          The race, from above.
-        </h2>
+        <canvas
+          id="videoTextCanvas"
+          class="video-text-canvas"
+        ></canvas>
 
         <video
-          class="masked-video"
-          id="maskedVideo"
+          id="videoSource"
+          class="video-source"
           autoplay
           muted
           loop
@@ -50,7 +51,7 @@
           <source src="sea.mp4" type="video/mp4">
         </video>
 
-      </section>
+      </div>
 
 
       <p class="description">
@@ -62,8 +63,6 @@
 
   </main>
 
-
-  <!-- GSAP -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 
