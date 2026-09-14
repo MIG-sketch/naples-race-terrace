@@ -1,1 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #071a2b;
+  color: white;
+  overflow-x: hidden;
+}
+
+.test-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 6%;
+  background:
+    radial-gradient(circle at center, rgba(89, 174, 224, 0.07), transparent 45%),
+    #071a2b;
+}
+
+.test-content {
+  width: min(1200px, 100%);
+  text-align: center;
+}
+
+.eyebrow {
+  color: #8cccf0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 34px;
+}
+
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(72px, 10vw, 150px);
+  line-height: 0.9;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  margin-bottom: 70px;
+}
+
+.main-title span {
+  display: block;
+  color: #59aee0;
+  font-style: italic;
+}
+
+
+/* MASKED VIDEO TEXT */
+
+.masked-heading {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 70px;
+  overflow: hidden;
+}
+
+.masked-text {
+  position: relative;
+  z-index: 2;
+
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(60px, 9vw, 150px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+
+  color: transparent;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  background-image: url('sea.mp4');
+}
+
+
+/* video vero dietro */
+
+.masked-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: 1;
+
+  transform: scale(1.22);
+  will-change: transform;
+}
+
+
+/* maschera video via mix-blend + clip */
+
+.masked-heading::after {
+  content: "NAPLES FROM THE SEA";
+
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(60px, 9vw, 150px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+
+  color: white;
+
+  mix-blend-mode: destination-in;
+
+  pointer-events: none;
+}
+
+
+/* fallback visual layer */
+
+.masked-text {
+  mix-blend-mode: screen;
+}
+
+
+/* descrizione */
+
+.description {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* mobile */
+
+@media (max-width: 750px) {
+
+  .test-hero {
+    padding: 60px 6%;
+  }
+
+  .main-title {
+    font-size: clamp(60px, 18vw, 95px);
+    margin-bottom: 50px;
+  }
+
+  .masked-heading {
+    margin-bottom: 50px;
+  }
+
+  .masked-text,
+  .masked-heading::after {
+    font-size: clamp(48px, 15vw, 85px);
+  }
+
+  .description {
+    font-size: 16px;
+  }
+}
