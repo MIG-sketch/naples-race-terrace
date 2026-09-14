@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Naples Race Terrace — Animation Test</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="test-hero">
+
+    <div class="test-content">
+
+      <p class="eyebrow">
+        AMERICA'S CUP · NAPLES · 2027
+      </p>
+
+      <h1 class="main-title">
+        The race,
+        <span>from above.</span>
+      </h1>
+
+
+      <!-- MASKED VIDEO TEXT -->
+
+      <section class="masked-heading" id="maskedHeading">
+
+        <h2 class="masked-text" aria-label="NAPLES FROM THE SEA">
+          NAPLES FROM THE SEA
+        </h2>
+
+        <video
+          class="masked-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        >
+          <source src="sea.mp4" type="video/mp4">
+        </video>
+
+      </section>
+
+
+      <p class="description">
+        A private terrace overlooking the Gulf of Naples.
+        A privileged view of the race.
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- GSAP -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+  ></script>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
