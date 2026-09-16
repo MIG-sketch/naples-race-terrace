@@ -102,26 +102,21 @@ function setLanguage(lang) {
     );
 
 
-  translatableElements.forEach(
-    element => {
+  translatableElements.forEach(element => {
 
-      if (lang === "it") {
-        element.textContent =
-          element.dataset.it;
-      }
-
-      if (lang === "en") {
-        element.textContent =
-          element.dataset.en;
-      }
-
+    if (lang === "it") {
+      element.textContent = element.dataset.it;
     }
-  );
+
+    if (lang === "en") {
+      element.textContent = element.dataset.en;
+    }
+
+  });
 
 
   const languageMenu =
     document.getElementById("languageMenu");
-
 
   if (languageMenu) {
     languageMenu.classList.remove("active");
@@ -136,6 +131,83 @@ function setLanguage(lang) {
 }
 
 
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMobileMenu() {
+
+  const menu =
+    document.getElementById("mobileMenu");
+
+  const toggle =
+    document.getElementById("mobileMenuToggle");
+
+  if (!menu || !toggle) return;
+
+  const isOpen =
+    menu.classList.contains("active");
+
+  if (isOpen) {
+
+    closeMobileMenu();
+
+  } else {
+
+    menu.classList.add("active");
+
+    menu.removeAttribute("inert");
+
+    menu.setAttribute("aria-hidden", "false");
+
+    toggle.classList.add("active");
+
+    toggle.setAttribute("aria-expanded", "true");
+
+    toggle.setAttribute(
+      "aria-label",
+      "Close navigation menu"
+    );
+
+  }
+
+}
+
+
+
+function closeMobileMenu() {
+
+  const menu =
+    document.getElementById("mobileMenu");
+
+  const toggle =
+    document.getElementById("mobileMenuToggle");
+
+  if (!menu || !toggle) return;
+
+  menu.classList.remove("active");
+
+  menu.setAttribute("inert", "");
+
+  menu.setAttribute("aria-hidden", "true");
+
+  toggle.classList.remove("active");
+
+  toggle.setAttribute("aria-expanded", "false");
+
+  toggle.setAttribute(
+    "aria-label",
+    "Open navigation menu"
+  );
+
+}
+
+
+
+/* =========================================================
+   COOKIES
+========================================================= */
 
 function closeCookie() {
 
@@ -155,6 +227,10 @@ function closeCookie() {
 }
 
 
+
+/* =========================================================
+   EXPERIENCE CAROUSEL
+========================================================= */
 
 function initializeExperienceCarousel() {
 
@@ -293,28 +369,57 @@ function initializeExperienceCarousel() {
 
 
 
+/* =========================================================
+   GLOBAL CLICK EVENTS
+========================================================= */
+
 document.addEventListener(
   "click",
   function(event) {
 
     const selector =
-      document.querySelector(
-        ".language-selector"
-      );
+      document.querySelector(".language-selector");
 
-    const menu =
-      document.getElementById(
-        "languageMenu"
-      );
+    const languageMenu =
+      document.getElementById("languageMenu");
 
 
     if (
       selector &&
-      menu &&
+      languageMenu &&
       !selector.contains(event.target)
     ) {
 
-      menu.classList.remove("active");
+      languageMenu.classList.remove("active");
+
+    }
+
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const mobileToggle =
+      document.getElementById("mobileMenuToggle");
+
+
+    if (
+      mobileMenu &&
+      mobileToggle &&
+      mobileMenu.classList.contains("active")
+    ) {
+
+      const clickedInsideMenu =
+        mobileMenu.contains(event.target);
+
+      const clickedToggle =
+        mobileToggle.contains(event.target);
+
+
+      if (!clickedInsideMenu && !clickedToggle) {
+
+        closeMobileMenu();
+
+      }
 
     }
 
@@ -322,6 +427,10 @@ document.addEventListener(
 );
 
 
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
 
 window.addEventListener(
   "DOMContentLoaded",
@@ -334,34 +443,75 @@ window.addEventListener(
 
 
     const savedLanguage =
-      localStorage.getItem("language")
-      || "it";
-
+      localStorage.getItem("language") || "it";
 
     setLanguage(savedLanguage);
 
 
     const cookieAccepted =
-      localStorage.getItem(
-        "cookieAccepted"
-      );
+      localStorage.getItem("cookieAccepted");
 
-
-    if (
-      cookieAccepted === "true"
-    ) {
+    if (cookieAccepted === "true") {
 
       const cookieBar =
-        document.getElementById(
-          "cookieBar"
-        );
-
+        document.getElementById("cookieBar");
 
       if (cookieBar) {
         cookieBar.style.display = "none";
       }
 
     }
+
+
+    /* Close mobile menu after selecting a section */
+
+    const mobileLinks =
+      document.querySelectorAll(
+        ".mobile-menu-links a"
+      );
+
+    mobileLinks.forEach(link => {
+
+      link.addEventListener("click", function() {
+
+        closeMobileMenu();
+
+      });
+
+    });
+
+
+    /* Close mobile menu with Escape */
+
+    document.addEventListener("keydown", function(event) {
+
+      if (event.key === "Escape") {
+
+        closeMobileMenu();
+
+        const languageMenu =
+          document.getElementById("languageMenu");
+
+        if (languageMenu) {
+          languageMenu.classList.remove("active");
+        }
+
+      }
+
+    });
+
+
+    /* Close menu when switching to desktop */
+
+    window.addEventListener("resize", function() {
+
+      if (window.innerWidth > 1100) {
+
+        closeMobileMenu();
+
+      }
+
+    });
 
   }
 );
