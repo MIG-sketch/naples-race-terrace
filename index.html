@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -55,7 +56,7 @@
 
 
 
-      <!-- MENU -->
+      <!-- DESKTOP MENU -->
 
       <div class="nav-center">
 
@@ -132,6 +133,7 @@
             class="language-button"
             type="button"
             onclick="toggleLanguageMenu()"
+            aria-label="Select language"
           >
 
             <span id="currentLanguage">
@@ -185,6 +187,140 @@
         >
           Prenota ora
         </a>
+
+
+
+        <!-- MOBILE MENU BUTTON -->
+
+        <button
+          class="mobile-menu-toggle"
+          id="mobileMenuToggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          onclick="toggleMobileMenu()"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+
+      </div>
+
+
+
+      <!-- MOBILE MENU -->
+
+      <div
+        class="mobile-menu"
+        id="mobileMenu"
+        aria-hidden="true"
+        inert
+      >
+
+
+        <div class="mobile-menu-links">
+
+
+          <a
+            href="#experience"
+            data-it="L'esperienza"
+            data-en="Experience"
+          >
+            L'esperienza
+          </a>
+
+
+          <a
+            href="#guide"
+            data-it="Guida"
+            data-en="Guide"
+          >
+            Guida
+          </a>
+
+
+          <a
+            href="#faq"
+            data-it="FAQ"
+            data-en="FAQ"
+          >
+            FAQ
+          </a>
+
+
+          <a
+            href="#tickets"
+            data-it="Biglietti"
+            data-en="Tickets"
+          >
+            Biglietti
+          </a>
+
+
+          <a
+            href="#team"
+            data-it="Team"
+            data-en="Team"
+          >
+            Team
+          </a>
+
+
+          <a
+            href="#contact"
+            data-it="Contatti"
+            data-en="Contacts"
+          >
+            Contatti
+          </a>
+
+
+        </div>
+
+
+
+        <!-- LANGUAGE OPTIONS INSIDE MOBILE MENU -->
+
+        <div class="mobile-language-selector">
+
+
+          <span
+            class="mobile-language-label"
+            data-it="Lingua"
+            data-en="Language"
+          >
+            Lingua
+          </span>
+
+
+          <div class="mobile-language-buttons">
+
+
+            <button
+              type="button"
+              onclick="setLanguage('it'); closeMobileMenu()"
+              aria-label="Italiano"
+            >
+              IT
+            </button>
+
+
+            <button
+              type="button"
+              onclick="setLanguage('en'); closeMobileMenu()"
+              aria-label="English"
+            >
+              EN
+            </button>
+
+
+          </div>
+
+
+        </div>
 
 
       </div>
@@ -294,7 +430,7 @@
   <!-- =====================================================
        WEBSITE SECTIONS
 
-       NUOVO ORDINE:
+       ORDINE:
        1. EXPERIENCE
        2. GUIDE
        3. FAQ
