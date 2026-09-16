@@ -1887,3 +1887,37 @@ h1 .accent {
     letter-spacing: 0;
   }
 }
+
+
+/* =========================================================
+   COMPACT TEAM CARDS — only team section
+   Three smaller centered cards on desktop; responsive below.
+========================================================= */
+@media (min-width: 1101px) {
+  .team-grid {
+    width: min(100%, 1050px);
+    margin-inline: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+}
+
+@media (min-width: 751px) and (max-width: 1100px) {
+  .team-grid {
+    width: min(100%, 700px);
+    margin-inline: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.team-image-placeholder {
+  aspect-ratio: 4 / 4;
+}
+
+@media (max-width: 750px) {
+  .team-grid {
+    width: min(100%, 370px);
+    margin-inline: auto;
+    grid-template-columns: 1fr;
+  }
+}
