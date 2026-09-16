@@ -38,7 +38,7 @@ async function loadWebsiteSections() {
 
   await loadSection(
     "experience",
-    "esperienza/index.html?v=4"
+    "esperienza/index.html?v=5"
   );
 
   await loadSection(
