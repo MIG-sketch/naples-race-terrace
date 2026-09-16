@@ -1,3 +1,4 @@
+
 async function loadSection(containerId, filePath) {
 
   try {
@@ -37,7 +38,7 @@ async function loadWebsiteSections() {
 
   await loadSection(
     "experience",
-    "esperienza/index.html?v=2"
+    "esperienza/index.html?v=3"
   );
 
   await loadSection(
@@ -155,6 +156,142 @@ function closeCookie() {
 
 
 
+function initializeExperienceCarousel() {
+
+  const carousel =
+    document.getElementById("experienceCarousel");
+
+  if (!carousel) return;
+
+  const track =
+    carousel.querySelector(".experience-carousel-track");
+
+  const slides =
+    Array.from(
+      carousel.querySelectorAll(".experience-slide")
+    );
+
+  const arrows =
+    carousel.querySelectorAll(".experience-carousel-arrow");
+
+  const dots =
+    Array.from(
+      carousel.querySelectorAll(".experience-carousel-dots a")
+    );
+
+  if (!track || slides.length === 0) return;
+
+  let currentSlide = 0;
+
+
+  function updateDots() {
+
+    dots.forEach((dot, index) => {
+
+      const isActive = index === currentSlide;
+
+      dot.style.background = isActive
+        ? "#8cccf0"
+        : "rgba(140, 204, 240, 0.35)";
+
+      dot.style.transform = isActive
+        ? "scale(1.3)"
+        : "scale(1)";
+
+      if (isActive) {
+        dot.setAttribute("aria-current", "true");
+      } else {
+        dot.removeAttribute("aria-current");
+      }
+
+    });
+
+  }
+
+
+  function goToSlide(index) {
+
+    currentSlide =
+      (index + slides.length) % slides.length;
+
+    track.scrollTo({
+      left: slides[currentSlide].offsetLeft - slides[0].offsetLeft,
+      behavior: "smooth"
+    });
+
+    updateDots();
+
+  }
+
+
+  if (arrows.length >= 2) {
+
+    arrows[0].addEventListener("click", function(event) {
+
+      event.preventDefault();
+
+      goToSlide(currentSlide - 1);
+
+    });
+
+
+    arrows[1].addEventListener("click", function(event) {
+
+      event.preventDefault();
+
+      goToSlide(currentSlide + 1);
+
+    });
+
+  }
+
+
+  dots.forEach((dot, index) => {
+
+    dot.addEventListener("click", function(event) {
+
+      event.preventDefault();
+
+      goToSlide(index);
+
+    });
+
+  });
+
+
+  let scrollTimeout;
+
+  track.addEventListener("scroll", function() {
+
+    clearTimeout(scrollTimeout);
+
+    scrollTimeout = setTimeout(function() {
+
+      const slideWidth = slides[0].getBoundingClientRect().width;
+
+      if (!slideWidth) return;
+
+      currentSlide = Math.max(
+        0,
+        Math.min(
+          slides.length - 1,
+          Math.round(track.scrollLeft / slideWidth)
+        )
+      );
+
+      updateDots();
+
+    }, 100);
+
+  }, { passive: true });
+
+
+  updateDots();
+
+}
+
+
+
 document.addEventListener(
   "click",
   function(event) {
@@ -190,6 +327,9 @@ window.addEventListener(
   async function() {
 
     await loadWebsiteSections();
+
+
+    initializeExperienceCarousel();
 
 
     const savedLanguage =
