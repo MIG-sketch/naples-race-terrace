@@ -38,7 +38,7 @@ async function loadWebsiteSections() {
 
   await loadSection(
     "experience",
-    "esperienza/index.html?v=3"
+    "esperienza/index.html?v=4"
   );
 
   await loadSection(
@@ -267,7 +267,8 @@ function initializeExperienceCarousel() {
 
     scrollTimeout = setTimeout(function() {
 
-      const slideWidth = slides[0].getBoundingClientRect().width;
+      const slideWidth =
+        slides[0].getBoundingClientRect().width;
 
       if (!slideWidth) return;
 
