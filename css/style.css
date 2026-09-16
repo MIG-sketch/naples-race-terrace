@@ -1921,3 +1921,205 @@ h1 .accent {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   TEAM — HORIZONTAL PROFILES
+========================================================= */
+
+.team-section .team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 1180px;
+  margin: 55px auto 0;
+}
+
+
+/* Each member occupies one horizontal row */
+
+.team-section .team-card {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  align-items: center;
+  gap: 42px;
+
+  width: 100%;
+  max-width: none;
+  margin: 0;
+
+  padding: 32px 0;
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(7, 26, 43, 0.16);
+  border-radius: 0;
+  box-shadow: none;
+
+  overflow: visible;
+}
+
+.team-section .team-card:last-child {
+  border-bottom: none;
+}
+
+
+/* Small photographs on the left */
+
+.team-section .team-image-placeholder {
+  display: block;
+
+  width: 170px;
+  height: 170px;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: 1 / 1;
+
+  margin: 0;
+  padding: 0;
+
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.team-section .team-photo {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* Name, role and description */
+
+.team-section .team-card-content {
+  display: grid;
+  grid-template-columns: minmax(190px, 260px) minmax(0, 1fr);
+  align-items: center;
+  gap: 36px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 0;
+  margin: 0;
+}
+
+.team-section .team-member-heading {
+  min-width: 0;
+}
+
+.team-section .team-role {
+  margin: 0 0 12px;
+}
+
+.team-section .team-card h3 {
+  margin: 0;
+}
+
+.team-section .team-description {
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 0 32px;
+
+  border-left: 1px solid rgba(7, 26, 43, 0.18);
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   TEAM — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .team-section .team-card {
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .team-section .team-image-placeholder {
+    width: 140px;
+    height: 140px;
+  }
+
+  .team-section .team-card-content {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .team-section .team-description {
+    padding: 0;
+    border-left: none;
+  }
+
+}
+
+
+/* =========================================================
+   TEAM — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .team-section .team-grid {
+    margin-top: 30px;
+  }
+
+  .team-section .team-card {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 18px;
+
+    padding: 25px 0;
+  }
+
+  .team-section .team-image-placeholder {
+    width: 100px;
+    height: 115px;
+    aspect-ratio: auto;
+  }
+
+  .team-section .team-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .team-section .team-role {
+    margin-bottom: 7px;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+  }
+
+  .team-section .team-card h3 {
+    font-size: clamp(24px, 6vw, 34px);
+  }
+
+  .team-section .team-description {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+}
+
+
+/* Very narrow phones */
+
+@media (max-width: 360px) {
+
+  .team-section .team-card {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .team-section .team-image-placeholder {
+    width: 80px;
+    height: 100px;
+  }
+
+}
