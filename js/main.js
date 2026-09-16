@@ -1,4 +1,8 @@
 
+/* =========================================================
+   LOAD WEBSITE SECTIONS
+========================================================= */
+
 async function loadSection(containerId, filePath) {
 
   try {
@@ -34,6 +38,10 @@ async function loadSection(containerId, filePath) {
 
 
 
+/* =========================================================
+   LOAD ALL SECTIONS
+========================================================= */
+
 async function loadWebsiteSections() {
 
   await loadSection(
@@ -58,7 +66,7 @@ async function loadWebsiteSections() {
 
   await loadSection(
     "team",
-    "team/index.html?v=2"
+    "team/index.html?v=5"
   );
 
   await loadSection(
@@ -69,6 +77,10 @@ async function loadWebsiteSections() {
 }
 
 
+
+/* =========================================================
+   LANGUAGE MENU
+========================================================= */
 
 function toggleLanguageMenu() {
 
