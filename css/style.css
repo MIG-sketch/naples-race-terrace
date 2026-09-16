@@ -1721,3 +1721,169 @@ h1 .accent {
     scroll-behavior: auto;
   }
 }
+
+/* =========================================================
+   MOBILE NAVIGATION — preserves existing desktop layout
+========================================================= */
+.mobile-menu-toggle,
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .navbar {
+    position: relative;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 19px;
+    height: 2px;
+    border-radius: 2px;
+    background: white;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 5%;
+    right: 5%;
+    padding: 22px;
+    background: #071a2b;
+    border: 1px solid rgba(140, 204, 240, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    z-index: 200;
+  }
+
+  .mobile-menu.active {
+    display: block;
+  }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu-links a {
+    display: block;
+    padding: 12px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-menu-links a:hover,
+  .mobile-menu-links a:focus-visible {
+    color: #8cccf0;
+  }
+
+  .mobile-language-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 20px;
+  }
+
+  .mobile-language-label {
+    color: #8cccf0;
+    font-size: 13px;
+  }
+
+  .mobile-language-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .mobile-language-buttons button {
+    padding: 9px 14px;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(140, 204, 240, 0.45);
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .mobile-language-buttons button:hover,
+  .mobile-language-buttons button:focus-visible {
+    background: rgba(140, 204, 240, 0.16);
+  }
+}
+
+@media (max-width: 750px) {
+  .language-selector {
+    display: block;
+  }
+
+  .nav-right {
+    gap: 7px;
+  }
+
+  .language-button {
+    padding: 9px 8px;
+    font-size: 11px;
+  }
+
+  .book-button {
+    padding: 11px 10px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+
+  .mobile-menu-toggle {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .mobile-menu {
+    left: 6%;
+    right: 6%;
+  }
+}
+
+@media (max-width: 420px) {
+  .logo {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+  }
+
+  .logo span {
+    font-size: 7px;
+    letter-spacing: 0.1em;
+  }
+
+  .navbar {
+    column-gap: 6px;
+  }
+
+  .nav-right {
+    gap: 5px;
+  }
+
+  .language-button {
+    padding: 8px 6px;
+  }
+
+  .book-button {
+    padding: 9px 8px;
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+}
