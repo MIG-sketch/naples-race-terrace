@@ -1605,3 +1605,119 @@ h1 .accent {
   }
 
 }
+
+/* =========================================================
+   EXPERIENCE CAROUSEL
+   Added without changing existing site styles.
+========================================================= */
+.experience-carousel {
+  width: 100%;
+  margin-top: 70px;
+  min-width: 0;
+}
+
+.experience-carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: 22px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.experience-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.experience-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;
+  background: #10283c;
+}
+
+.experience-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.experience-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  margin-top: 22px;
+}
+
+.experience-carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(140, 204, 240, 0.45);
+  border-radius: 50%;
+  color: #8cccf0;
+  font-size: 23px;
+  line-height: 1;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.experience-carousel-arrow:hover,
+.experience-carousel-arrow:focus-visible {
+  background: #59aee0;
+  color: white;
+}
+
+.experience-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.experience-carousel-dots a {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(140, 204, 240, 0.35);
+  border: 1px solid #8cccf0;
+  transition: background 0.2s ease;
+}
+
+.experience-carousel-dots a:hover,
+.experience-carousel-dots a:focus-visible {
+  background: #8cccf0;
+}
+
+@media (max-width: 750px) {
+  .experience-carousel {
+    margin-top: 45px;
+  }
+
+  .experience-carousel-track {
+    border-radius: 16px;
+  }
+
+  .experience-slide {
+    aspect-ratio: 4 / 3;
+  }
+
+  .experience-carousel-controls {
+    gap: 22px;
+    margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-carousel-track {
+    scroll-behavior: auto;
+  }
+}
