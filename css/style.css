@@ -1931,8 +1931,8 @@ h1 .accent {
   flex-direction: column;
   gap: 0;
   width: 100%;
-  max-width: 1180px;
-  margin: 55px auto 0;
+  max-width: none;
+  margin: 55px 0 0;
 }
 
 
